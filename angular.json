@@ -145,6 +145,32 @@
       },
       "tags": [],
       "implicitDependencies": ["quotes"]
+    },
+    "quotes-page": {
+      "projectType": "library",
+      "root": "libs/quotes/page",
+      "sourceRoot": "libs/quotes/page/src",
+      "prefix": "seinfeld",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/quotes/page"],
+          "options": {
+            "jestConfig": "libs/quotes/page/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/quotes/page/src/**/*.ts",
+              "libs/quotes/page/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

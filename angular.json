@@ -92,6 +92,32 @@
       },
       "tags": []
     },
+    "quotes-data-access": {
+      "projectType": "library",
+      "root": "libs/quotes/data-access",
+      "sourceRoot": "libs/quotes/data-access/src",
+      "prefix": "seinfeld",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/quotes/data-access"],
+          "options": {
+            "jestConfig": "libs/quotes/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/quotes/data-access/src/**/*.ts",
+              "libs/quotes/data-access/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "quotes-e2e": {
       "root": "apps/quotes-e2e",
       "sourceRoot": "apps/quotes-e2e/src",

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { QuotesEntity } from './+state/quotes.models';
 
@@ -14,15 +14,17 @@ export class QuotesService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<QuotesEntity[]> {
-    return this.http.get<{ quotes: any[] }>(`${this.API_URL}/quotes`).pipe(
-      map((response) => {
-        return response.quotes.map((quote, index) => {
-          return {
-            id: index,
-            ...quote,
-          };
-        });
-      })
-    );
+    return this.http
+      .get<{ quotes: QuotesEntity[] }>(`${this.API_URL}/quotes`)
+      .pipe(
+        map((response) => {
+          return response.quotes.map((quote, index) => {
+            return {
+              id: index,
+              ...quote,
+            };
+          });
+        })
+      );
   }
 }

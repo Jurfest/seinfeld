@@ -35,3 +35,15 @@ export const getSelected = createSelector(
   getSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const getRandomQuotes = createSelector(getAllQuotes, (quotes) => {
+  const start = Math.floor(Math.random() * quotes.length);
+
+  return quotes.slice(start, start + 10).map((quote, index) => {
+    return {
+      // id: index,
+      ...quote,
+    };
+  });
+  // return quotes.slice(start, start + 10);
+});

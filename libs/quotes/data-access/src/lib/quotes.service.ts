@@ -1,9 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { QuotesEntity } from './+state/quotes.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuotesService {
+  private API_URL = 'https://seinfeld-quotes.herokuapp.com';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<QuotesEntity[]> {
+    return this.http.get<{ quotes: any[] }>(`${this.API_URL}/quotes`).pipe(
+      map((response) => {
+        return response.quotes.map((quote, index) => {
+          return {
+            id: index,
+            ...quote,
+          };
+        });
+      })
+    );
+  }
 }
